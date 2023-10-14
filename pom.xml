@@ -51,7 +51,7 @@
 			<artifactId>jacoco-maven-plugin</artifactId>
 			<version>0.8.5</version>
 			<executions> <execution>
-			<goals>ß
+			<goals>
 			<goal>prepare-agent</goal>
 			</goals>
 			</execution> <execution>
