@@ -34,7 +34,7 @@ pipeline {
                   sh "bash trivy-docker-image-scan.sh"
                 },
                 "OPA Conftest": {
-                  sh "/usr/local/bin/conftest test --policy opa-docker-security.rego Dockerfile"
+                  sh 'docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy opa-docker-security.rego Dockerfile
                 }
               )
             }
@@ -44,6 +44,7 @@ pipeline {
       stage('Vulnerability Scan - Kubernetes') {
             steps {
               sh '/usr/local/bin/conftest test --policy opa-k8s-security.rego k8s_deployment_service.yaml'
+
             }
           }
       stage('Kubernetes Deployment - DEV') {
