@@ -70,7 +70,7 @@ pipeline {
         steps {
           parallel(
             "Deployment": {
-              withKubeConfig([credentialsId: 'kubeconfig'l) {
+              withKubeConfig([credentialsId: 'kubeconfig']) {
                 sh "bash k8s-deployment. sh"
               }
             },
