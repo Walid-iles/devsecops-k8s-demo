@@ -48,7 +48,7 @@ pipeline {
                 }
               )
             }
-            
+             
           }
 
       stage('Vulnerability Scan - Kubernetes') {
