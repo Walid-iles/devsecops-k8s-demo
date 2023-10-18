@@ -1,7 +1,7 @@
 FROM adoptopenjdk/openjdk8:alpine-slim
 EXPOSE 8080
 ARG JAR_FILE=target/*.jar
-RUN addgroup -S pipeline && adduser -S k8s-pipeline -G pipeline
-COPY ${JAR_FILE} /home/k8s-pipeline/app.jar
-USER k8s-pipeline
-ENTRYPOINT ["java","-jar","/home/k8s-pipeline/app.jar"]
+RUN addgroup -S devops-security && adduser -S devsecops -G devops-security
+COPY ${JAR_FILE} /home/devsecops/app.jar
+USER devsecops
+ENTRYPOINT ["java","-jar","/home/devsecops/app.jar"]
