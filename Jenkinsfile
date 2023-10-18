@@ -48,7 +48,7 @@ pipeline {
                 }
               )
             }
-             
+            
           }
 
       stage('Vulnerability Scan - Kubernetes') {
@@ -65,6 +65,23 @@ pipeline {
     }
      
 
+      stage('K8S Deployment - DEV') {
+        steps {
+          parallel(
+            "Deployment": {
+              withKubeConfig([credentialsId: 'kubeconfig']) {
+                sh "bash k8s-deployment.sh"
+              }
+            },
+            "Rollout Status": {
+              withKubeConfig([credentialsId: 'kubeconfig']) {
+                sh "bash k8s-deployment-rollout-status.sh"
+            }
+          }
+        )
+      }
+    }
+
       stage('Docker Build and Push') {
             steps {
               withDockerRegistry([credentialsId: "docker-hub", url: ""]){
@@ -74,8 +91,6 @@ pipeline {
             }
            } 
         }
-
-      
         
     }
 
