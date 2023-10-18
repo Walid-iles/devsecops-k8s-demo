@@ -9,11 +9,11 @@ scan_score=$(curl -sSX POST --data-binary @"k8s_deployment_service.yaml" https:/
 
 echo $scan_score
 
-if [[ "${scan_score}" -gt 1 ]]; then
+if [[ "${scan_score}" -gt 5 ]]; then
   echo "Score is $scan_score"
   echo "Kubesec Scan $scan_message"
 else
   echo "Score is $scan_score"
-  echo "Kubernetes template scanning failed because score is less than or equal to $scan_score"
+  echo "Kubernetes template scanning failed because score is less than or equal to 5"
   exit 1;
 fi
