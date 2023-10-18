@@ -66,17 +66,6 @@ pipeline {
       //     }
       //  }
 
-      
-      stage('Docker Build and Push') {
-            steps {
-              withDockerRegistry([credentialsId: "docker-hub", url: ""]){
-              sh 'printenv'
-              sh 'docker build -t ge54rthq465e1ye8465/numeric-app:""$GIT_COMMIT"" .' 
-              sh 'docker push ge54rthq465e1ye8465/numeric-app:""$GIT_COMMIT""'
-            }
-           } 
-        }
-
       stage('K8S Deployment - DEV') {
         steps {
           parallel(
@@ -93,6 +82,16 @@ pipeline {
         )
       }
     }
+
+      stage('Docker Build and Push') {
+            steps {
+              withDockerRegistry([credentialsId: "docker-hub", url: ""]){
+              sh 'printenv'
+              sh 'docker build -t ge54rthq465e1ye8465/numeric-app:""$GIT_COMMIT"" .' 
+              sh 'docker push ge54rthq465e1ye8465/numeric-app:""$GIT_COMMIT""'
+            }
+           } 
+        }
         
     }
 
