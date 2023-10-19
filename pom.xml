@@ -21,7 +21,7 @@
 		<java.version>1.8</java.version>
 		<tomcat.version>9.0.43</tomcat.version>
 		<logback.version>1.2.9</logback.version>
-		<jackson-bom.version>2.14.3.</jackson-bom.version>
+		
 	</properties>
 
 	<dependencies>
